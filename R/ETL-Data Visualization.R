@@ -1,6 +1,3 @@
-
-
-extrafont::loadfonts(device="win")
 if (!require("fredr")) {install.packages("fredr"); library("fredr")}
 if (!require("purrr")) {install.packages("purrr"); library("purrr")}
 if (!require("reshape2")) {install.packages("reshape2"); library("reshape2")}
@@ -9,16 +6,22 @@ if (!require("lubridate")) {install.packages("lubridate"); library("lubridate")}
 if (!require("ggplot2")) {install.packages("ggplot2"); library("ggplot2")}
 if (!require("scales")) {install.packages("scales"); library("scales")}
 if (!require("tis")) {install.packages("tis"); library("tis")}
-if (!require("gridExtra")) {install.packages("gridExtra"); library("gridExtra")}
-if (!require("grid")) {install.packages("grid"); library("grid")}
 if (!require("formattable")) {install.packages("formattable"); library("formattable")}
-if (!require("ggtheme")) {install.packages("ggtheme"); library("ggtheme")}
-if (!require("kable")) {install.packages("kable"); library("kable")}
+if (!require("ggthemes")) {install.packages("ggthemes"); library("ggthemes")}
 if (!require("openxlsx")) {install.packages("openxlsx"); library("openxlsx")}
+if (!require("extrafont")) {install.packages("extrafont"); library("extrafont")}
+extrafont::loadfonts(device="win")
+
+
+
 # add bloomberg, quandl pulls
+# Add function to webscrape BEA and BLS datasets
+# Include some links
+
+
 fred.api.key <-function(key){fredr_set_key(key)}
 
-eco.monthly <- function(fred.keys,col.rename, shape){
+eco.monthly <- function(fred.keys,key.rename, shape){
 
 
   shape <- ifelse(is.null(shape),'w',shape)
@@ -34,9 +37,9 @@ eco.monthly <- function(fred.keys,col.rename, shape){
     fred.keys <-append('USRECM', fred.keys)
     df <-data.frame(map_dfr(fred.keys,fredr))
     df <-reshape(df, idvar='date', timevar='series_id', direction='wide')
-    col.rename <-append('recession', col.rename)
-    col.rename <-append('date', col.rename)
-    colnames(df) <-col.rename
+    col.rename <-append('recession', key.rename)
+    col.rename <-append('date', key.rename)
+    colnames(df) <-key.rename
     df <-df[order(as.Date(df[,1], format="%d/%m/%Y")),]
     rownames(df) <-df$date
     df$quarter <-paste(quarters(as.Date(df[,1])), format(df[,1], '%y'), sep=" ")
@@ -44,7 +47,7 @@ eco.monthly <- function(fred.keys,col.rename, shape){
   }
 }
 
-eco.quarterly <-function(fred.keys,col.rename, shape){
+eco.quarterly <-function(fred.keys,key.rename, shape){
  shape <-ifesle(is.null(shape),'w',shape)
 
  if(shape == 'l'){
@@ -57,9 +60,9 @@ eco.quarterly <-function(fred.keys,col.rename, shape){
     fred.keys <-append('USRECQM', fred.keys)
     df <-data.frame(map_dfr(fred.keys,fredr))
     df <-reshape(df, idvar='date', timevar='series_id', direction='wide')
-    col.rename <-append('recession', col.rename)
-    col.rename <-append('date', col.rename)
-    colnames(df) <-col.rename
+    col.rename <-append('recession', key.rename)
+    col.rename <-append('date', key.rename)
+    colnames(df) <-key.rename
     df <-df[order(as.Date(df[,1], format="%d/%m/%Y")),]
     rownames(df) <-df$date
     df$Quarter <-paste(quarters(as.Date(df[,1])), format(df[,1], '%y'), sep=" ")
@@ -77,7 +80,7 @@ eco.plot <-function(df,x,y,sub,y.title,x.title,title,caption,date.break,color,da
   title <- ifelse(is.null(title),'', title)
   caption <- ifelse(is.null(caption),'', caption)
   legend.pos <- ifelse(is.null(legend.pos),'top', legend.pos)
-  date.break <- ifelse(is.null(date.break),'1 year', date.break)
+  date.break <- ifelse(is.null(date.break),'1 years', date.break)
   date.format <- ifelse(is.null(date.format),'%y', date.format)
   line.size <-ifelse(is.null(line.size),.7, line.size)
   yaxis.text.size <-ifelse(is.null(yaxis.text.size),15, yaxis.text.size)
