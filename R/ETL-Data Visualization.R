@@ -36,14 +36,15 @@ eco.monthly <- function(fred.keys,key.rename, shape){
     fred.keys <-append('USRECM', fred.keys)
     df <-data.frame(map_dfr(fred.keys,fredr))
     df <-stats::reshape(df, idvar='date', timevar='series_id', direction='wide')
-    col.rename <-append('recession', key.rename)
-    col.rename <-append('date', key.rename)
+    key.rename <-append('recession', key.rename)
+    key.rename <-append('date', key.rename)
     colnames(df) <-key.rename
     df <-df[order(as.Date(df[,1], format="%d/%m/%Y")),]
     rownames(df) <-df$date
     df$quarter <-paste(quarters(as.Date(df[,1])), format(df[,1], '%y'), sep=" ")
     return(df)
   }
+
 }
 
 eco.quarterly <-function(fred.keys,key.rename, shape){
@@ -59,8 +60,8 @@ eco.quarterly <-function(fred.keys,key.rename, shape){
     fred.keys <-append('USRECQM', fred.keys)
     df <-data.frame(map_dfr(fred.keys,fredr))
     df <-stats::reshape(df, idvar='date', timevar='series_id', direction='wide')
-    col.rename <-append('recession', key.rename)
-    col.rename <-append('date', key.rename)
+    key.rename <-append('recession', key.rename)
+    key.rename <-append('date', key.rename)
     colnames(df) <-key.rename
     df <-df[order(as.Date(df[,1], format="%d/%m/%Y")),]
     rownames(df) <-df$date
