@@ -35,7 +35,7 @@ eco.monthly <- function(fred.keys,key.rename, shape){
   }else{
     fred.keys <-append('USRECM', fred.keys)
     df <-data.frame(map_dfr(fred.keys,fredr))
-    df <-reshape(df, idvar='date', timevar='series_id', direction='wide')
+    df <-stats::reshape(df, idvar='date', timevar='series_id', direction='wide')
     col.rename <-append('recession', key.rename)
     col.rename <-append('date', key.rename)
     colnames(df) <-key.rename
@@ -47,7 +47,7 @@ eco.monthly <- function(fred.keys,key.rename, shape){
 }
 
 eco.quarterly <-function(fred.keys,key.rename, shape){
- shape <-ifesle(!is.null(shape),'w',shape)
+ shape <-ifesle(!missing(shape),'w',shape)
 
  if(shape == 'l'){
    fred.keys <-append('USRECQM', fred.keys)
@@ -58,7 +58,7 @@ eco.quarterly <-function(fred.keys,key.rename, shape){
  } else{
     fred.keys <-append('USRECQM', fred.keys)
     df <-data.frame(map_dfr(fred.keys,fredr))
-    df <-reshape(df, idvar='date', timevar='series_id', direction='wide')
+    df <-stats::reshape(df, idvar='date', timevar='series_id', direction='wide')
     col.rename <-append('recession', key.rename)
     col.rename <-append('date', key.rename)
     colnames(df) <-key.rename
@@ -118,22 +118,22 @@ eco.plot <-function(df,x,y,sub,y.title,x.title,title,caption,date.break,color,da
 
 eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size ){
   # Set Default Values - only df, x, y1,y2 are required
-  x <- ifelse(is.null(x),'date',x)
-  subtitle <- ifelse(is.null(subtitle),'',subtitle)
-  y.title <- ifelse(is.null(y.title),'', y.title)
-  x.title <- ifelse(is.null(x.title),'', x.title)
-  title <- ifelse(is.null(title),'', title)
-  caption <- ifelse(is.null(caption),'', caption)
-  legend.pos <- ifelse(is.null(legend.pos),'top', legend.pos)
-  y1color <- ifelse(is.null(ycolor1),'#4682b4',ycolor1)
-  y2color <-ifelse(is.null(ycolor2),'#66CD00',ycolor2)
-  date.break <- ifelse(is.null(date.break),'1 year', date.break)
-  date.format <- ifelse(is.null(date.format),'%y', date.format)
-  line.size <-ifelse(is.null(line.size),.7, line.size)
-  yaxis.text.size <-ifelse(is.null(yaxis.text.size),15, yaxis.text.size)
-  xaxis.text.size <-ifelse(is.null(xaxis.text.size),15, xaxis.text.size)
-  caption.size <-ifelse(is.null(caption.size),13, caption.size)
-  legend.size <-ifelse(is.null(legend.size),15, legend.size)
+  x <- ifelse(missing(x),'date',x)
+  subtitle <- ifelse(missing(subtitle),'',subtitle)
+  y.title <- ifelse(missing(y.title),'', y.title)
+  x.title <- ifelse(missing(x.title),'', x.title)
+  title <- ifelse(missing(title),'', title)
+  caption <- ifelse(missing(caption),'', caption)
+  legend.pos <- ifelse(missing(legend.pos),'top', legend.pos)
+  y1color <- ifelse(missing(ycolor1),'#4682b4',ycolor1)
+  y2color <-ifelse(missing(ycolor2),'#66CD00',ycolor2)
+  date.break <- ifelse(missing(date.break),'1 year', date.break)
+  date.format <- ifelse(missing(date.format),'%y', date.format)
+  line.size <-ifelse(missing(line.size),.7, line.size)
+  yaxis.text.size <-ifelse(missing(yaxis.text.size),15, yaxis.text.size)
+  xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
+  caption.size <-ifelse(missing(caption.size),13, caption.size)
+  legend.size <-ifelse(missing(legend.size),15, legend.size)
 
   start <-df$date[which(diff(df[['recession']])==1)]
   end <-df$date[which(diff(df[['recession']])==-1)]
@@ -166,23 +166,23 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
 
 eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size){
   # Set Default Values - only df, x, y1,y2 are required
-  x <- ifelse(is.null(x),'date',x)
-  subtitle <- ifelse(is.null(subtitle),'',subtitle)
-  y.title <- ifelse(is.null(y.title),'', y.title)
-  x.title <- ifelse(is.null(x.title),'', x.title)
-  title <- ifelse(is.null(title),'', title)
-  caption <- ifelse(is.null(caption),'', caption)
-  legend.pos <- ifelse(is.null(legend.pos),'top', legend.pos)
-  y1color <- ifelse(is.null(ycolor1),'#4682b4',ycolor1)
-  y2color <-ifelse(is.null(ycolor2),'#66CD00',ycolor2)
-  y3color <-ifelse(is.null(ycolor3),'#8A1F03',ycolor3)
-  date.break <- ifelse(is.null(date.break),'1 year', date.break)
-  date.format <- ifelse(is.null(date.format),'%y', date.format)
-  line.size <-ifelse(is.null(line.size),.7, line.size)
-  yaxis.text.size <-ifelse(is.null(yaxis.text.size),15, yaxis.text.size)
-  xaxis.text.size <-ifelse(is.null(xaxis.text.size),15, xaxis.text.size)
-  caption.size <-ifelse(is.null(caption.size),13, caption.size)
-  legend.size <-ifelse(is.null(legend.size),15, legend.size)
+  x <- ifelse(missing(x),'date',x)
+  subtitle <- ifelse(missing(subtitle),'',subtitle)
+  y.title <- ifelse(missing(y.title),'', y.title)
+  x.title <- ifelse(missing(x.title),'', x.title)
+  title <- ifelse(missing(title),'', title)
+  caption <- ifelse(missing(caption),'', caption)
+  legend.pos <- ifelse(missing(legend.pos),'top', legend.pos)
+  y1color <- ifelse(missing(ycolor1),'#4682b4',ycolor1)
+  y2color <-ifelse(missing(ycolor2),'#66CD00',ycolor2)
+  y3color <-ifelse(missing(ycolor3),'#8A1F03',ycolor3)
+  date.break <- ifelse(missing(date.break),'1 year', date.break)
+  date.format <- ifelse(missing(date.format),'%y', date.format)
+  line.size <-ifelse(missing(line.size),.7, line.size)
+  yaxis.text.size <-ifelse(missing(yaxis.text.size),15, yaxis.text.size)
+  xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
+  caption.size <-ifelse(missing(caption.size),13, caption.size)
+  legend.size <-ifelse(missing(legend.size),15, legend.size)
 
   start <-df$date[which(diff(df[['recession']])==1)]
   end <-df$date[which(diff(df[['recession']])==-1)]
@@ -216,23 +216,23 @@ eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.ti
 }
 
 eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,subtitle,line.size,date.break,date.format,y.title,x.title,legend.pos, xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
-  x <- ifelse(is.null(x),'date',x)
-  bar.color <- ifelse(is.null(bar.color),'#4682b4',bar.color)
-  line.color <-ifelse(is.null(line.color),'#66CD00',line.color)
-  subtitle <- ifelse(is.null(subtitle),'',subtitle)
-  y.title <- ifelse(is.null(y.title),'', y.title)
-  x.title <- ifelse(is.null(x.title),'', x.title)
-  title <- ifelse(is.null(title),'', title)
-  caption <- ifelse(is.null(caption),'', caption)
-  legend.pos <- ifelse(is.null(legend.pos),'top', legend.pos)
-  date.break <- ifelse(is.null(date.break),'2 year', date.break)
-  date.format <- ifelse(is.null(date.format),'%y', date.format)
-  line.size <-ifelse(is.null(line.size),.7, line.size)
-  yaxis.text.size <-ifelse(is.null(yaxis.text.size),15, yaxis.text.size)
-  xaxis.text.size <-ifelse(is.null(xaxis.text.size),15, xaxis.text.size)
-  title.size <-ifelse(is.null(title.size),20, title.size)
-  caption.size <-ifelse(is.null(caption.size),13, caption.size)
-  legend.size <-ifelse(is.null(legend.size),15, legend.size)
+  x <- ifelse(missing(x),'date',x)
+  bar.color <- ifelse(missing(bar.color),'#4682b4',bar.color)
+  line.color <-ifelse(missing(line.color),'#66CD00',line.color)
+  subtitle <- ifelse(missing(subtitle),'',subtitle)
+  y.title <- ifelse(missing(y.title),'', y.title)
+  x.title <- ifelse(missing(x.title),'', x.title)
+  title <- ifelse(missing(title),'', title)
+  caption <- ifelse(missing(caption),'', caption)
+  legend.pos <- ifelse(missing(legend.pos),'top', legend.pos)
+  date.break <- ifelse(missing(date.break),'2 year', date.break)
+  date.format <- ifelse(missing(date.format),'%y', date.format)
+  line.size <-ifelse(missing(line.size),.7, line.size)
+  yaxis.text.size <-ifelse(missing(yaxis.text.size),15, yaxis.text.size)
+  xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
+  title.size <-ifelse(missing(title.size),20, title.size)
+  caption.size <-ifelse(missing(caption.size),13, caption.size)
+  legend.size <-ifelse(missing(legend.size),15, legend.size)
 
   start <-df$date[which(diff(df[['recession']])==1)]
   end <-df$date[which(diff(df[['recession']])==-1)]
@@ -266,22 +266,22 @@ eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,sub
 }
 
 eco.bar.plot <-function(df,x,y,fill,yTitle,title,caption,labels,subtitle, legend.pos,bar.position,xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
-  x <- ifelse(is.null(x),'date',x)
-  bar.position <- ifelse(is.null(bar.position),'dodge')
-  subtitle <- ifelse(is.null(subtitle),'',subtitle)
-  y.title <- ifelse(is.null(y.title),'', y.title)
-  x.title <- ifelse(is.null(x.title),'', x.title)
-  title <- ifelse(is.null(title),'', title)
-  caption <- ifelse(is.null(caption),'', caption)
-  legend.pos <- ifelse(is.null(legend.pos),'top', legend.pos)
-  fill <-ifelse(is.null(fill),'series_id',fill)
-  date.break <- ifelse(is.null(date.break),'1 year', date.break)
-  date.format <- ifelse(is.null(date.format),'%y', date.format)
-  line.size <-ifelse(is.null(line.size),.7, line.size)
-  yaxis.text.size <-ifelse(is.null(yaxis.text.size),15, yaxis.text.size)
-  xaxis.text.size <-ifelse(is.null(xaxis.text.size),15, xaxis.text.size)
-  caption.size <-ifelse(is.null(caption.size),13, caption.size)
-  legend.size <-ifelse(is.null(legend.size),15, legend.size)
+  x <- ifelse(missing(x),'date',x)
+  bar.position <- ifelse(missing(bar.position),'dodge')
+  subtitle <- ifelse(missing(subtitle),'',subtitle)
+  y.title <- ifelse(missing(y.title),'', y.title)
+  x.title <- ifelse(missing(x.title),'', x.title)
+  title <- ifelse(missing(title),'', title)
+  caption <- ifelse(missing(caption),'', caption)
+  legend.pos <- ifelse(missing(legend.pos),'top', legend.pos)
+  fill <-ifelse(missing(fill),'series_id',fill)
+  date.break <- ifelse(missing(date.break),'1 year', date.break)
+  date.format <- ifelse(missing(date.format),'%y', date.format)
+  line.size <-ifelse(missing(line.size),.7, line.size)
+  yaxis.text.size <-ifelse(missing(yaxis.text.size),15, yaxis.text.size)
+  xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
+  caption.size <-ifelse(missing(caption.size),13, caption.size)
+  legend.size <-ifelse(missing(legend.size),15, legend.size)
 
   ggplot(df,aes(x=df[[x]],y=df[[y]],fill=df[[fill]]))+
     geom_bar(stat='identity',position=bar.position)+
