@@ -87,6 +87,7 @@ eco.plot <-function(df,x,y,sub,y.title,x.title,title,caption,date.break,color,da
   title.size <-ifelse(missing(title.size),20, title.size)
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
+  title.size <-ifelse(missing(title.size),20, title.size)
 
   start <-df$date[which(diff(df[['recession']])==1)]
   end <-df$date[which(diff(df[['recession']])==-1)]
@@ -134,6 +135,7 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
   xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
+  title.size <-ifelse(missing(title.size),20, title.size)
 
   start <-df$date[which(diff(df[['recession']])==1)]
   end <-df$date[which(diff(df[['recession']])==-1)]
@@ -183,6 +185,7 @@ eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.ti
   xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
+  title.size <-ifelse(missing(title.size),20, title.size)
 
   start <-df$date[which(diff(df[['recession']])==1)]
   end <-df$date[which(diff(df[['recession']])==-1)]
@@ -282,6 +285,7 @@ eco.bar.plot <-function(df,x,y,fill,yTitle,title,caption,labels,subtitle, legend
   xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
+  title.size <-ifelse(missing(title.size),20, title.size)
 
   ggplot(df,aes(x=df[[x]],y=df[[y]],fill=df[[fill]]))+
     geom_bar(stat='identity',position=bar.position)+
