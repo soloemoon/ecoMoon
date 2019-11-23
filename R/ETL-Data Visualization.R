@@ -271,7 +271,7 @@ eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,sub
 
 eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitle, legend.pos,bar.position,xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
   x <- ifelse(missing(x),'date',x)
-  bar.position <- ifelse(missing(bar.position),'dodge')
+  bar.position <- ifelse(missing(bar.position),'',bar.position)
   subtitle <- ifelse(missing(subtitle),'',subtitle)
   y.title <- ifelse(missing(y.title),'', y.title)
   x.title <- ifelse(missing(x.title),'', x.title)
