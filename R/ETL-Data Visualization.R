@@ -48,7 +48,7 @@ eco.monthly <- function(fred.keys,key.rename, shape){
 }
 
 eco.quarterly <-function(fred.keys,key.rename, shape){
- shape <-ifesle(!missing(shape),'w',shape)
+ shape <-ifelse(!missing(shape),'w',shape)
 
  if(shape == 'l'){
    fred.keys <-append('USRECQM', fred.keys)
