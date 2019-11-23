@@ -253,7 +253,7 @@ eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,sub
   ggplot()+
     geom_bar(aes(x=df[[x]], y=df[[bar]], color=bar.color),stat='identity')+
     geom_line(aes(x=df[[x]], y=df[[line]],color=line.color),size=line.size)+
-    scale_color_manual(values=c(bar, line),labels = c(bar.color, line.color))+
+    scale_color_manual(labels=c(bar, line),values = c(bar.color, line.color))+
     labs(title=title,caption=caption,subtitle = subtitle)+
     ylab(y.title)+xlab(x.title)+
     scale_x_date(date_breaks = date.break,labels = date_format(date.format))+
