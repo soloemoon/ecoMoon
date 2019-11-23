@@ -11,7 +11,7 @@ if (!require("ggthemes")) {install.packages("ggthemes"); library("ggthemes")}
 if (!require("openxlsx")) {install.packages("openxlsx"); library("openxlsx")}
 if (!require("extrafont")) {install.packages("extrafont"); library("extrafont")}
 extrafont::loadfonts(device="win")
-
+options(warn=-1)
 
 
 # add bloomberg, quandl pulls
@@ -279,9 +279,6 @@ eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitl
   caption <- ifelse(missing(caption),'', caption)
   legend.pos <- ifelse(missing(legend.pos),'top', legend.pos)
   fill <-ifelse(missing(fill),'series_id',fill)
-  date.break <- ifelse(missing(date.break),'1 year', date.break)
-  date.format <- ifelse(missing(date.format),'%y', date.format)
-  line.size <-ifelse(missing(line.size),.7, line.size)
   yaxis.text.size <-ifelse(missing(yaxis.text.size),15, yaxis.text.size)
   xaxis.text.size <-ifelse(missing(xaxis.text.size),15, xaxis.text.size)
   caption.size <-ifelse(missing(caption.size),13, caption.size)
