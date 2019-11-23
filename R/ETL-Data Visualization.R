@@ -287,7 +287,7 @@ eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitl
 
   ggplot(df,aes(x=df[[x]],y=df[[y]],fill=df[[fill]]))+
     geom_bar(stat='identity',position=bar.position)+
-    labs(y=y.title,title=title,caption=caption, subtitle = subtitle)+
+    labs(y=y.title,title=title,caption=caption, subtitle = subtitle,x=x.title)+
     scale_fill_economist(name='',labels=c(labels))+
     theme_economist_white(gray_bg = FALSE)+
     theme(legend.position = legend.pos,
