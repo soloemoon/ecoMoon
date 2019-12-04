@@ -138,6 +138,7 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
     }
+     }
 
 eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size ){
   # Set Default Values - only df, x, y1,y2 are required
@@ -208,6 +209,7 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
     }
+     }
 
 eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size){
   # Set Default Values - only df, x, y1,y2 are required
@@ -283,6 +285,7 @@ eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.ti
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
     }
+     }
 
 eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,subtitle,line.size,date.break,date.format,y.title,x.title,legend.pos, xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
   x <- ifelse(missing(x),'date',x)
@@ -356,7 +359,7 @@ eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,sub
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
     }
-
+}
 eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitle, legend.pos,bar.position,xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
   x <- ifelse(missing(x),'date',x)
   bar.position <- ifelse(missing(bar.position),'',bar.position)
