@@ -90,7 +90,8 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
 
-
+  if(sum(df[['recession']] !=0){
+  
   start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
   }else{
@@ -122,7 +123,21 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
           axis.title = element_text(size=title.size),
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
-}
+} else {
+      ggplot()+
+    geom_line(aes(x=df[[x]], y=df[[y]],color=color),size=line.size)+
+    labs(subtitle=subtitle, y=y.title,x=x.title,title=title,caption=caption)+
+    scale_color_manual(labels=c(y),values=c(color))+
+    scale_x_date(date_breaks = date.break,labels = date_format(date.format))+
+    theme_economist_white(gray_bg = FALSE)+
+    theme(legend.position = legend.pos,
+          legend.title = element_blank(),
+          axis.text.x = element_text(size=xaxis.text.size),
+          axis.text.y = element_text(size=yaxis.text.size),
+          axis.title = element_text(size=title.size),
+          plot.caption = element_text(size=caption.size),
+          legend.text = element_text(size=legend.size))
+    }
 
 eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size ){
   # Set Default Values - only df, x, y1,y2 are required
@@ -144,6 +159,8 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
 
+  if(sum(df[['recession']] != 0){
+    
   start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
   }else{
@@ -176,7 +193,21 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
 
-}
+} else {
+     ggplot()+geom_line(aes(x = df[[x]], y = df[[y1]], color = ycolor1),size=line.size)+
+    geom_line(aes(x = df[[x]], y=df[[y2]],color = ycolor2),size =line.size)+
+    labs(subtitle = subtitle, y = y.title,x = x.title,title = title,caption = caption)+
+    scale_color_manual(values = c(ycolor1, ycolor2),labels = c(y1,y2))+
+    scale_x_date(date_breaks = date.break,labels = date_format(date.format))+
+    theme_economist_white(gray_bg = FALSE)+
+    theme(legend.position = legend.pos,
+          legend.title = element_blank(),
+          axis.text.x = element_text(size=xaxis.text.size),
+          axis.text.y = element_text(size=yaxis.text.size),
+          axis.title = element_text(size=title.size),
+          plot.caption = element_text(size=caption.size),
+          legend.text = element_text(size=legend.size))
+    }
 
 eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size){
   # Set Default Values - only df, x, y1,y2 are required
@@ -199,6 +230,8 @@ eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.ti
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
 
+  if(sum(df[['recession']] != 0){
+    
   start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
   }else{
@@ -233,7 +266,23 @@ eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.ti
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
 
-}
+} else {
+    ggplot()+
+    geom_line(aes(x = df[[x]], y = df[[y1]], color = ycolor1),size=line.size)+
+    geom_line(aes(x = df[[x]], y=df[[y2]],color = ycolor2),size =line.size)+
+    geom_line(aes(x = df[[x]], y=df[[y3]],color = ycolor3),size =line.size)+
+    labs(subtitle = subtitle, y = y.title,x = x.title,title = title,caption = caption)+
+    scale_color_manual(values = c(ycolor1, ycolor2,ycolor3),labels = c(y1,y2,y3))+
+    scale_x_date(date_breaks = date.break,labels = date_format(date.format))+
+    theme_economist_white(gray_bg = FALSE)+
+    theme(legend.position = legend.pos,
+          legend.title = element_blank(),
+          axis.text.x = element_text(size=xaxis.text.size),
+          axis.text.y = element_text(size=yaxis.text.size),
+          axis.title = element_text(size=title.size),
+          plot.caption = element_text(size=caption.size),
+          legend.text = element_text(size=legend.size))
+    }
 
 eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,subtitle,line.size,date.break,date.format,y.title,x.title,legend.pos, xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
   x <- ifelse(missing(x),'date',x)
@@ -254,7 +303,9 @@ eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,sub
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
 
-   start <- if(head(df[['recession']],1)== 1){
+  if(sum(df[['recession']] !=0){
+  
+  start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
   }else{
   df$date[which(diff(df[['recession']])==1)]
@@ -288,7 +339,23 @@ eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,sub
           plot.caption = element_text(size=caption.size),
           legend.text = element_text(size=legend.size))
 
-}
+} else {
+      ggplot()+
+    geom_bar(aes(x=df[[x]], y=df[[bar]], color=bar.color),stat='identity')+
+    geom_line(aes(x=df[[x]], y=df[[line]],color=line.color),size=line.size)+
+    scale_color_manual(labels=c(bar, line),values = c(bar.color, line.color))+
+    labs(title=title,caption=caption,subtitle = subtitle)+
+    ylab(y.title)+xlab(x.title)+
+    scale_x_date(date_breaks = date.break,labels = date_format(date.format))+
+    theme_economist_white(gray_bg = FALSE)+
+    theme(legend.position = legend.pos,
+          legend.title = element_blank(),
+          axis.text.x = element_text(size=xaxis.text.size),
+          axis.text.y = element_text(size=yaxis.text.size),
+          axis.title = element_text(size=title.size),
+          plot.caption = element_text(size=caption.size),
+          legend.text = element_text(size=legend.size))
+    }
 
 eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitle, legend.pos,bar.position,xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
   x <- ifelse(missing(x),'date',x)
