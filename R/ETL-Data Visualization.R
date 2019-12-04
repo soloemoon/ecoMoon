@@ -90,7 +90,7 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
 
-  if(sum(df[['recession']] !=0){
+  if(sum(df[['recession']]) !=0){
   
   start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
@@ -160,7 +160,7 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
 
-  if(sum(df[['recession']] != 0){
+  if(sum(df[['recession']]) != 0){
     
   start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
@@ -232,7 +232,7 @@ eco.plot3 <-function(df,x,y1,y2,y3,ycolor1,ycolor2,ycolor3,subtitle,y.title,x.ti
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
 
-  if(sum(df[['recession']] != 0){
+  if(sum(df[['recession']]) != 0){
     
   start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
@@ -306,7 +306,7 @@ eco.barline.plot <-function(df,x,bar,line,bar.color,line.color,title,caption,sub
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
 
-  if(sum(df[['recession']] !=0){
+  if(sum(df[['recession']]) !=0){
   
   start <- if(head(df[['recession']],1)== 1){
   df$date[head(df[['recession']],1)]
