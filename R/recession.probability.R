@@ -32,7 +32,6 @@ recession.probability <-function(start.date,show.plot){
        recession.plot <-ggplot()+
           geom_line(aes(x=RP$date, y=RP$Prob,color='#4682b4'),size=.7)+
           labs(subtitle='Based on 3 Month Treasury Spread', y='%',x='',title='Recession Probability',caption='Source: Treasury Model')+
-          scale_color_manual(labels=c('Recession Probability'),values=c('#4682b4'))+
           scale_x_date(date_breaks = '1 year',labels = date_format('%y'))+
          geom_rect(data=recession.df,aes(xmin=start,xmax=end, ymin=-Inf,ymax=+Inf),alpha=.3,color='grey80')+
       theme_economist_white(gray_bg = FALSE)+
@@ -41,7 +40,7 @@ recession.probability <-function(start.date,show.plot){
                 axis.text.y = element_text(size=15),
                 axis.title = element_text(size=15),
                 plot.caption = element_text(size=13),
-                legend.text = element_text(size=15))
+                legend.text = element_blank())
       
       
       return(recession.plot)
@@ -51,7 +50,6 @@ recession.probability <-function(start.date,show.plot){
         recession.plot <-ggplot()+
           geom_line(aes(x=RP$date, y=RP$Prob,color='#4682b4'),size=.7)+
           labs(subtitle='Based on 3 Month Treasury Spread', y='%',x='',title='Recession Probability',caption='Source: Treasury Model')+
-          scale_color_manual(labels=c('Recession Probability'),values=c('#4682b4'))+
           scale_x_date(date_breaks = '1 year',labels = date_format('%y'))+
           theme_economist_white(gray_bg = FALSE)+
           theme(legend.title = element_blank(),
@@ -59,7 +57,7 @@ recession.probability <-function(start.date,show.plot){
                 axis.text.y = element_text(size=15),
                 axis.title = element_text(size=15),
                 plot.caption = element_text(size=13),
-                legend.text = element_text(size=15))
+                legend.text = element_blank())
         return(recession.plot)
         
       }
