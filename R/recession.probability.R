@@ -10,7 +10,7 @@ recession.probability <-function(start.date,show.plot){
     RP$Prob <-pnorm(-0.5333 - 0.6330 * RP$Prob) * 100
     RP$Prob <- round(RP$Prob,2)
     
-    if(sum(df[['recession']]) !=0){
+    if(sum(RP[['recession']]) !=0){
       
       start <- if(head(RP[['recession']],1)== 1){
         RP$date[head(RP[['recession']],1)]
@@ -26,7 +26,7 @@ recession.probability <-function(start.date,show.plot){
         recession.df <- subset(recession.df, start>=min(RP[['recession']]))
       } else {
         recession.df <-data.frame(start = start, end = end)
-        recession.df <- subset(recession.df, start>=min(df[['recession']]))
+        recession.df <- subset(recession.df, start>=min(RP[['recession']]))
       } 
 
        recession.plot <-ggplot()+
