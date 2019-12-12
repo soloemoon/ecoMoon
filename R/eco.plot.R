@@ -1,7 +1,7 @@
 eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,color,date.format,line.size, yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size,legend.pos){
   # Set Default Values
   x <- ifelse(missing(x),'date',x)
-  color <- ifelse(missing(color),'#4682b4',color)
+  color <- ifelse(missing(color),'#014d64',color)
   subtitle <- ifelse(missing(subtitle),'',subtitle)
   y.title <- ifelse(missing(y.title),'', y.title)
   x.title <- ifelse(missing(x.title),'', x.title)
