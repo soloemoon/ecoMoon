@@ -65,7 +65,7 @@ data <-eco.download(keys = c('UNRATE', 'PAYEMS'), key.rename = c('UE','Payrolls'
 
 data.trans <- eco.transform(data, transformation = 'change', lags = 1)
 
-eco.plot(df = data, x='date', y = 'Payrolls', y.title = 'Chg', title = 'NFP Change', caption = 'Source: Bureau of Labor Statistics')
+eco.plot(df = data, x='date', y = 'Payrolls', y.title = 'Chg', title = 'NFP Change', caption = 'Source: Bureau of Labor Statistics', date.break = '5 year')
 ```
 Included plots are:
    * eco.plot - plot a single economic data series (line chart)
