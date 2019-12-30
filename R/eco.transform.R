@@ -21,7 +21,7 @@ if(transformation == '% change'){
   return(df.trans)
 
 # Change
-}else if(transformation == 'change'){
+}else if(transformation == 'difference'){
 
   df.trans <-plyr::colwise(function(x){
     if(is.numeric(x)){x - lag(x,lags)

@@ -6,8 +6,7 @@
 
 \title{Download Economic Data}
 \description{
-Downloadeconomic data from FRED with recessions and quarters automatically added. Choose shape of dataset.
-}
+Download economic data from selected sources. Choose shape, inclusion of recession bars, and time series options.
 \usage{
 eco.monthly(keys,key.rename, shape, periodicity, show.recession)
 }
@@ -28,8 +27,8 @@ eco.monthly(keys,key.rename, shape, periodicity, show.recession)
 
 \examples{
 \dontshow{fred.api.key('a12c9684bc85a0d907b7f10bade21e93')}
-fred.keys <-c('UNRATE','PAYEMS')
-key.rename <-c('Unemployment Rate','Non Farm Payrolls')
-monthly.indicators <-eco.monthly(fred.keys, key.rename,shape = 'w', periodicity = 'monthly', show.recession = 'y')
+keys <-c('UNRATE','PAYEMS')
+rename <-c('Unemployment Rate','Non Farm Payrolls')
+t.data <-eco.download(c('UNRAte','PAYEMS'), c('UE','Payrolls'), show.recession = 'n', time.series = 'n')
 
 \keyword{datasets}

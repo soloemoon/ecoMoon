@@ -13,10 +13,9 @@ eco.transform(df, transformation, lags, index.date)
 }
 \arguments{
   \item{df}{Dataframe containing economic data (Required)}
-  \item{transformation}{Transformation to apply (Required)}
-  \item{shape}{Choose 'l' for long format or 'W' for wide format. Default is wide.}
-  \item{periodicity}{Choose periodicity. Either 'monthly', 'quarterly', 'weekly', or 'daily'. Default is monthly.}
-  \item{show.recession}{Choose y to include recession indicator or 'n' to exclude. Default is 'y'.}
+  \item{transformation}{Transformation to apply: '% change', 'change','log','annualize monthly','annualize quarterly'}
+  \item{lags}{Select the number of lags to apply}
+  \item{index.data}{Input a date for the index transformation}
 
 }
 
@@ -28,8 +27,6 @@ eco.transform(df, transformation, lags, index.date)
 
 \examples{
 \dontshow{fred.api.key('a12c9684bc85a0d907b7f10bade21e93')}
-fred.keys <-c('UNRATE','PAYEMS')
-key.rename <-c('Unemployment Rate','Non Farm Payrolls')
-monthly.indicators <-eco.monthly(fred.keys, key.rename,shape = 'w', periodicity = 'monthly', show.recession = 'y')
-
+t.data <-eco.download(c('UNRAte','PAYEMS'), c('UE','Payrolls'), show.recession = 'n', time.series = 'n')
+t <-eco.transform(df = t.data, transformation = '% change', lags = 1)
 \keyword{datasets}
