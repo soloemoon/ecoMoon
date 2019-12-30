@@ -43,8 +43,9 @@ Several pre-formatted plotting functions have been included. Each function inclu
 Thanks to all the developers of packages such as dplyr, purrr, fredr, etc whose hard work made this package possible!
 
 Features coming soon: 
-1. Date Filtering
-2. Bloomberg data pull
-3. Quandl Data pull
-4. More chart themes and added flexibility
-5. batch dataset etl (BEA and BLS)
+1. More data sources (Bloomberg, Quandl, BEA, BLS, Census)
+2. Additional transformations (logit, indexing, etc)
+3. Pre-built batch dataset downloads (initially from BEA and BLS)
+4. Report Generation Tool
+
+
