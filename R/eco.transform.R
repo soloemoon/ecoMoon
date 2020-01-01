@@ -11,7 +11,7 @@ eco.transform <-function(df, transformation, lags, index.date){
   }
 
 # Determine class of object - dataframe or xts.
-if(is.data.frame(df.trans) == 'TRUE'){
+if(is.data.frame(df.trans) == TRUE){
 
 # Non Annualized Growth Rates
 if(transformation == '% change'){
@@ -62,7 +62,7 @@ if(transformation == '% change'){
     return(df.trans)
 
   }
-}else if(is.xts(df.trans) == 'TRUE'){
+}else if(is.xts(df.trans) == TRUE){
 
   xts.dates <-index(df.trans)
 
