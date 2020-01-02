@@ -18,24 +18,25 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
 
-  if(sum(df[['recession']]) !=0){
+if(sum(df[['recession']]) !=0){
 
     start <- if(head(df[['recession']],1)== 1){
-      df$date[head(df[['recession']],1)]
-    }else{
-      df$date[which(diff(df[['recession']])==1)]
-    }
+    df$date[head(df[['recession']],1)]
+
+}else{
+    df$date[which(diff(df[['recession']])==1)]
+}
 
     end <-df$date[which(diff(df[['recession']])==-1)]
 
-    if (length(end)>length(start)){
+if (length(end)>length(start)){
       end <-end[-1]
       recession.df <-data.frame(start = start, end = end)
       recession.df <- subset(recession.df, start>=min(df[['recession']]))
-    } else {
+} else {
       recession.df <-data.frame(start = start, end = end)
       recession.df <- subset(recession.df, start>=min(df[['recession']]))
-    }
+}
 
     ggplot()+
       geom_line(aes(x=df[[x]], y=df[[y]],color=color),size=line.size)+
@@ -51,7 +52,7 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
             axis.title = element_text(size=title.size),
             plot.caption = element_text(size=caption.size),
             legend.text = element_text(size=legend.size))
-  } else {
+} else {
     ggplot()+
       geom_line(aes(x=df[[x]], y=df[[y]],color=color),size=line.size)+
       labs(subtitle=subtitle, y=y.title,x=x.title,title=title,caption=caption)+
