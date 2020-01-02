@@ -69,10 +69,6 @@ if(is.data.frame(df.trans) == TRUE){
 
   df.trans <-log(df.trans[ , unlist(lapply(df.trans, is.numeric))])
 
-  df.trans <-plyr::colwise(function(x){
-  if(is.numeric(x)){x - lag(x,lags)
-  }else{x}})(df.trans)
-
   if(exists('year') == TRUE){df.trans <-cbind(df.trans, year)}
 
   if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
@@ -80,7 +76,21 @@ if(is.data.frame(df.trans) == TRUE){
   return(df.trans)
 
 # Monthly Annualized % Change
-} else if(transformation == 'annualize monthly'){
+} else if(transformation == 'log difference'){
+
+  df.trans <-log(df.trans[ , unlist(lapply(df.trans, is.numeric))])
+
+  df.trans <-plyr::colwise(function(x){
+    if(is.numeric(x)){x - lag(x,lags)
+    }else{x}})(df.trans)
+
+  if(exists('year') == TRUE){df.trans <-cbind(df.trans, year)}
+
+  if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
+
+  return(df.trans)
+
+}else if(transformation == 'annualize monthly'){
 
   df.trans <-plyr::colwise(function(x){
   if(is.numeric(x)){((x/lag(x,lags))^12 - 1)
