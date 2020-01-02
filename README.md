@@ -80,7 +80,7 @@ Each plot includes options to adjust the color, titles, caption, subtitle, legen
 Thanks to all the developers of packages such as dplyr, purrr, fredr, etc whose hard work made this package possible! More detailed credit will be added.
 
 Features coming soon: 
-1. More data sources (Bloomberg, Quandl, BEA, BLS, Census)
+1. More data sources (BEA support via API in development now)
 2. Additional transformations (logit, indexing, etc)
 3. Pre-built batch dataset downloads (initially from BEA and BLS)
 4. Report Generation Tool
