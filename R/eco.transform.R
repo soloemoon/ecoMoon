@@ -154,6 +154,7 @@ if(is.data.frame(df.trans) == TRUE){
 
   return(df.trans)}
 
+# Check if XTS
 }else if(is.xts(df.trans) == TRUE){
 
   xts.dates <-index(df.trans)
@@ -161,9 +162,8 @@ if(is.data.frame(df.trans) == TRUE){
   # Non Annualized Growth Rates
   if(transformation == '% change'){
 
-  df.trans <-xts(vapply(df.trans, function(x){
-  if(is.numeric(x)){x / lag(x, lags) - 1
-  }else{x}}, FUN.VALUE = numeric(nrow(df.trans))), order.by = xts.dates )
+  df.trans <-xts(vapply(df.trans, function(x){x / lag(x, lags) - 1},
+                        FUN.VALUE = numeric(nrow(df.trans))), order.by = xts.dates )
 
   return(df.trans)
 
@@ -181,14 +181,20 @@ if(is.data.frame(df.trans) == TRUE){
 
   df.trans <-log(df.trans[ , unlist(lapply(df.trans, is.numeric))])
 
-  df.trans <-xts(vapply(df.trans, function(x){
-  if(is.numeric(x)){x - lag(x,lags)
-  }else{x}}, FUN.VALUE = numeric(nrow(df.trans))), order.by = xts.dates )
-
   return(df.trans)
 
 # Monthly Annualized % Change
-} else if(transformation == 'annualize monthly'){
+} else if(transformation == 'log difference'){
+
+  df.trans <-log(df.trans[ , unlist(lapply(df.trans, is.numeric))])
+
+  df.trans <-xts(vapply(df.trans, function(x){
+    if(is.numeric(x)){x - lag(x,lags)
+    }else{x}}, FUN.VALUE = numeric(nrow(df.trans))), order.by = xts.dates )
+
+  return(df.trans)
+
+}else if(transformation == 'annualize monthly'){
 
   df.trans <-xts(vapply(df.trans, function(x){
   if(is.numeric(x)){((x/lag(x,lags))^12 - 1)

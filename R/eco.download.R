@@ -84,7 +84,7 @@ if((time.series == 'n') & (shape == 'l')){
     df <-within(df, rm('date'))
     return(df)
 
-} else if((time.series == 'y') & (shape == 'w')){
+} else if((time.series == 'y')){
 
     df <-data.frame(map_dfr(keys,fredr))
     df <-stats::reshape(df, idvar='date', timevar='series_id', direction='wide')
@@ -92,8 +92,10 @@ if((time.series == 'n') & (shape == 'l')){
     colnames(df) <-key.rename
     df <-df[order(as.Date(df[ , 1], format="%d/%m/%Y")),]
     rownames(df) <-df$date
+    df$series_id <-NULL
     df <-xts::xts(x = df, order.by = df$date)
     df$date <-NULL
+    storage.mode(df) <-'numeric'
     return(df)
 
 }else{
