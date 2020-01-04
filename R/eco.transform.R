@@ -14,6 +14,9 @@ index <-ifelse(missing(index.date),0,index.date)
 # Create transformation set
 df.trans <-df
 
+# Store column names. Used to rename dataframe columns post transformation
+name.store <- names(df.trans)
+
 # Check for year column and exclude from transformation dataset
 if('year' %in% colnames(df.trans)){
   year <-df.trans$year
@@ -91,7 +94,7 @@ if(is.data.frame(df.trans) == TRUE){
 # Log Transformation
 }else if(transformation == 'log'){
 
-  df.trans <-log(df.trans[ , unlist(lapply(df.trans, is.numeric))])
+  df.trans <-data.frame(log(df.trans[ , unlist(lapply(df.trans, is.numeric))]))
 
   if(exists('year') == TRUE){df.trans <-cbind(df.trans, year)}
 
@@ -99,12 +102,14 @@ if(is.data.frame(df.trans) == TRUE){
 
   if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
 
+  names(df.trans) <-name.store
+
   return(df.trans)
 
 # Monthly Annualized % Change
 } else if(transformation == 'log difference'){
 
-  df.trans <-log(df.trans[ , unlist(lapply(df.trans, is.numeric))])
+  df.trans <-data.frame(log(df.trans[ , unlist(lapply(df.trans, is.numeric))]))
 
   df.trans <-plyr::colwise(function(x){
     if(is.numeric(x)){x - lag(x,lags)
@@ -115,6 +120,8 @@ if(is.data.frame(df.trans) == TRUE){
   if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
 
   if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
+
+  names(df.trans) <-name.store
 
   return(df.trans)
 
