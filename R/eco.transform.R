@@ -2,7 +2,7 @@ eco.transform <-function(df, transformation, lags, index.date){
 
 '%notin%' <-Negate('%in%')
 
-if(transformation %notin% c('% change', 'difference', 'annualize monthly',' annualize quarterly','log')){
+if(transformation %notin% c('% change', 'difference', 'annualize monthly',' annualize quarterly','log', 'log difference')){
   warning('Invalid transformation option selected')
   return(print('Invalid Transformation selected'))
 }
@@ -34,6 +34,26 @@ if('recession' %in% colnames(df)){
   df.trans <-within(df.trans,rm('Recession'))
 }
 
+# Check for Quarter and exclude from transformation dataset
+if('quarter' %in% colnames(df)){
+  quarter <-df$quarter
+  df.trans <-within(df.trans, rm('quarter'))
+
+} else if('Quarter' %in% colnames(df)){
+  quarter <-df$Quarter
+  df.trans <-within(df.trans,rm('Quarter'))
+}
+
+# Set date as Index
+if('date' %in% colnames(df)){
+  rownames(df) <- df$date
+  df <-within(df, rm('date'))
+
+} else if('Date' %in% colnames(df)){
+  rownames(df) <- df$Date
+  df <-within(df, rm('Date'))
+}
+
 # Determine class of object - dataframe or xts.
 if(is.data.frame(df.trans) == TRUE){
 
@@ -49,6 +69,8 @@ if(is.data.frame(df.trans) == TRUE){
 
     if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
 
+    if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
+
     return(df.trans)
 
 # Change
@@ -62,6 +84,8 @@ if(is.data.frame(df.trans) == TRUE){
 
     if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
 
+    if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
+
     return(df.trans)
 
 # Log Transformation
@@ -72,6 +96,8 @@ if(is.data.frame(df.trans) == TRUE){
   if(exists('year') == TRUE){df.trans <-cbind(df.trans, year)}
 
   if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
+
+  if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
 
   return(df.trans)
 
@@ -88,6 +114,8 @@ if(is.data.frame(df.trans) == TRUE){
 
   if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
 
+  if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
+
   return(df.trans)
 
 }else if(transformation == 'annualize monthly'){
@@ -99,6 +127,8 @@ if(is.data.frame(df.trans) == TRUE){
   if(exists('year') == TRUE){df.trans <-cbind(df.trans, year)}
 
   if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
+
+  if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
 
   return(df.trans)
 
@@ -112,6 +142,8 @@ if(is.data.frame(df.trans) == TRUE){
   if(exists('year') == TRUE){df.trans <-cbind(df.trans, year)}
 
   if(exists('recession') == TRUE){df.trans <-cbind(df.trans, recession)}
+
+  if(exists('quarter') == TRUE){df.trans <-cbind(df.trans, quarter)}
 
   return(df.trans)}
 
