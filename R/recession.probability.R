@@ -6,7 +6,7 @@ recession.probability <-function(start.date,show.plot){
   if(show.plot == 'y'){
     
     RP <-eco.download('T10Y3MM','Prob') %>% na.omit() 
-    RP$date <-index(RP)
+    RP$date <-as.Date(index(RP))
     RP <-subset(RP$date >= as.Date(start.date))
     RP$Prob <-pnorm(-0.5333 - 0.6330 * RP$Prob) * 100
     RP$Prob <- round(RP$Prob,2)
