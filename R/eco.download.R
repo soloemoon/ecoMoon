@@ -81,7 +81,7 @@ if((time.series == 'n') & (shape == 'l')){
     df$quarter <-paste(quarters(as.Date(df[ , 1])), format(df[ , 1], '%y'), sep=" ")
     df$year <-lubridate::year(df$date)
     rownames(df) <- df$date
-    df <-within(df, rm('date'))
+    #df <-within(df, rm('date'))
     return(df)
 
 } else if((time.series == 'y')){
