@@ -1,6 +1,6 @@
 recession.probability <-function(start.date,show.plot){
   
-  plot <-ifelse(missing(show.plot),'n','y')
+  show.plot <-ifelse(missing(show.plot),'n','y')
   start.date <-ifelse(missing(start.date),'2000-01-01',start.date)
   
   if(show.plot == 'y'){
@@ -67,9 +67,6 @@ recession.probability <-function(start.date,show.plot){
     
   }else{
     
-    RP <-eco.download('T10Y3MM','Prob') %>% na.omit() %>% subset(date >= as.Date(start.date))
-    RP$Prob <-pnorm(-0.5333 - 0.6330 * RP$Prob) * 100
-    RP$Prob <- round(RP$Prob,2)
     return(RP)
     
   }
