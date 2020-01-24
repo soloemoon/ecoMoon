@@ -64,7 +64,7 @@ if(class(periodicity) != 'character'){
 if((time.series == 'n') & (shape == 'l')){
   # Shape dataframe
     df <-data.frame(map_dfr(keys,fredr))
-    df <-df[order(series_id,as.Date(df[ , 1], format="%d/%m/%Y")),]
+    df <-df[order(df$series_id,as.Date(df[ , 1], format="%d/%m/%Y")),]
     df$quarter <-paste(quarters(as.Date(df[ , 1])), format(df[ , 1], '%y'), sep=" ")
     df$year <-lubridate::year(df$date)
     return(df)
