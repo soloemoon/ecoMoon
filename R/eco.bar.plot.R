@@ -18,7 +18,7 @@ eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitl
     geom_bar(stat='identity',position=bar.position)+
     labs(y=y.title,title=title,caption=caption, subtitle = subtitle,x=x.title)+
     theme_economist_white(gray_bg = FALSE)+
-    scale_color_stata()+
+    scale_colour_solarized()+
     theme(legend.position = legend.pos,
           legend.title = element_blank(),
           axis.text.x = element_text(size=xaxis.text.size),
