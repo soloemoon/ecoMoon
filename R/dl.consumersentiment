@@ -7,5 +7,6 @@ consumer.sentiment$date <-mdy(paste(consumer.sentiment$DATE.OF.SURVEY, '01',cons
 consumer.sentiment <-consumer.sentiment[ ,c('INDEX.OF.CONSUMER.SENTIMENT', 'date')]
 row.names(consumer.sentiment) <-consumer.sentiment$date
 colnames(consumer.sentiment) <-c('Consumer Sentiment', 'date')
-consumer.sentiment <- subset(consumer.sentiment,consumer.sentiment$date >= '2017-01-01')
+consumer.sentiment <- subset(consumer.sentiment,consumer.sentiment$date >= start.date)
+return(consumer.sentiment)
 }
