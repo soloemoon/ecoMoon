@@ -1,4 +1,4 @@
-eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size ){
+eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,caption,legend.pos,date.break, date.format,line.size,yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size, axis.title.size ){
   # Set Default Values - only df, x, y1,y2 are required
   x <- ifelse(missing(x),'date',x)
   subtitle <- ifelse(missing(subtitle),'',subtitle)
@@ -17,6 +17,7 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
+  axis.title.size <-ifelse(missing(axis.title.size), 15, axis.title.size)
 
   if(sum(df[['recession']]) != 0){
 
@@ -44,13 +45,14 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
       scale_x_date(date_breaks = date.break,labels = date_format(date.format))+
       geom_rect(data=recession.df,aes(xmin=start,xmax=end, ymin=-Inf,ymax=+Inf),alpha=0.3,color='grey80')+
       theme_economist_white(gray_bg = FALSE)+
-      theme(legend.position = legend.pos,
+     theme(legend.position = legend.pos,
             legend.title = element_blank(),
             axis.text.x = element_text(size=xaxis.text.size),
             axis.text.y = element_text(size=yaxis.text.size),
-            axis.title = element_text(size=title.size),
+            axis.title = element_text(size=axis.title.size),
             plot.caption = element_text(size=caption.size),
-            legend.text = element_text(size=legend.size))
+            legend.text = element_text(size=legend.size),
+           plot.title = element_text(size= text.size))
 
   } else {
     ggplot()+geom_line(aes(x = df[[x]], y = df[[y1]], color = ycolor1),size=line.size)+
@@ -63,8 +65,9 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
             legend.title = element_blank(),
             axis.text.x = element_text(size=xaxis.text.size),
             axis.text.y = element_text(size=yaxis.text.size),
-            axis.title = element_text(size=title.size),
+            axis.title = element_text(size=axis.title.size),
             plot.caption = element_text(size=caption.size),
-            legend.text = element_text(size=legend.size))
+            legend.text = element_text(size=legend.size),
+           plot.title = element_text(size= text.size))
   }
 }
