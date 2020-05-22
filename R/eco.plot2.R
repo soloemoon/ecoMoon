@@ -52,7 +52,7 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
             axis.title = element_text(size=axis.title.size),
             plot.caption = element_text(size=caption.size),
             legend.text = element_text(size=legend.size),
-           plot.title = element_text(size= text.size))
+           plot.title = element_text(size= title.size))
 
   } else {
     ggplot()+geom_line(aes(x = df[[x]], y = df[[y1]], color = ycolor1),size=line.size)+
@@ -68,6 +68,6 @@ eco.plot2 <-function(df,x,y1,y2,ycolor1,ycolor2,subtitle,y.title,x.title,title,c
             axis.title = element_text(size=axis.title.size),
             plot.caption = element_text(size=caption.size),
             legend.text = element_text(size=legend.size),
-           plot.title = element_text(size= text.size))
+           plot.title = element_text(size= title.size))
   }
 }
