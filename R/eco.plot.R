@@ -1,4 +1,4 @@
-eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,color,date.format,line.size, yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size,legend.pos){
+eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,color,date.format,line.size, yaxis.text.size,xaxis.text.size,title.size,caption.size,legend.size,legend.pos,axis.title.size){
   # Set Default Values
   x <- ifelse(missing(x),'date',x)
   color <- ifelse(missing(color),'#014d64',color)
@@ -16,7 +16,8 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
   title.size <-ifelse(missing(title.size),20, title.size)
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
-  title.size <-ifelse(missing(title.size),20, title.size)
+  axis.title.size <-ifelse(missing(taxis.title.size),20, taxis.title.size)
+
 
 if(sum(df[['recession']]) !=0){
 
@@ -49,9 +50,10 @@ if (length(end)>length(start)){
             legend.title = element_blank(),
             axis.text.x = element_text(size=xaxis.text.size),
             axis.text.y = element_text(size=yaxis.text.size),
-            axis.title = element_text(size=title.size),
+            axis.title = element_text(size=axis.title.size),
             plot.caption = element_text(size=caption.size),
-            legend.text = element_text(size=legend.size))
+            legend.text = element_text(size=legend.size),
+           plot.title = element_text(size= text.size))
 } else {
     ggplot()+
       geom_line(aes(x=df[[x]], y=df[[y]],color=color),size=line.size)+
@@ -63,8 +65,9 @@ if (length(end)>length(start)){
             legend.title = element_blank(),
             axis.text.x = element_text(size=xaxis.text.size),
             axis.text.y = element_text(size=yaxis.text.size),
-            axis.title = element_text(size=title.size),
+            axis.title = element_text(size=axis.title.size),
             plot.caption = element_text(size=caption.size),
-            legend.text = element_text(size=legend.size))
+            legend.text = element_text(size=legend.size),
+           plot.title = element_text(size= text.size))
   }
 }
