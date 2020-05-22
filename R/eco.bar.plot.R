@@ -27,5 +27,5 @@ eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitl
             axis.title = element_text(size=axis.title.size),
             plot.caption = element_text(size=caption.size),
             legend.text = element_text(size=legend.size),
-           plot.title = element_text(size= text.size))
+           plot.title = element_text(size= title.size))
 }
