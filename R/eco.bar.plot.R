@@ -1,4 +1,4 @@
-eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitle, legend.pos,bar.position,xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size){
+eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitle, legend.pos,bar.position,xaxis.text.size,yaxis.text.size,title.size,caption.size,legend.size, axis.title.size){
   x <- ifelse(missing(x),'date',x)
   bar.position <- ifelse(missing(bar.position),'',bar.position)
   subtitle <- ifelse(missing(subtitle),'',subtitle)
@@ -13,6 +13,7 @@ eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitl
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   title.size <-ifelse(missing(title.size),20, title.size)
+  axis.title.size <-ifelse(missing(axis.title.size), 15, axis.title.size)
 
   ggplot(df,aes(x=df[[x]],y=df[[y]],fill=df[[fill]]))+
     geom_bar(stat='identity',position=bar.position)+
@@ -20,10 +21,11 @@ eco.bar.plot <-function(df,x,y,fill,y.title,x.title,title,caption,labels,subtitl
   scale_fill_gdocs(labels=c(labels))+
     theme_economist_white(gray_bg = FALSE)+
     theme(legend.position = legend.pos,
-          legend.title = element_blank(),
-          axis.text.x = element_text(size=xaxis.text.size),
-          axis.text.y = element_text(size=yaxis.text.size),
-          axis.title = element_text(size=title.size),
-          plot.caption = element_text(size=caption.size),
-          legend.text = element_text(size=legend.size))
+            legend.title = element_blank(),
+            axis.text.x = element_text(size=xaxis.text.size),
+            axis.text.y = element_text(size=yaxis.text.size),
+            axis.title = element_text(size=axis.title.size),
+            plot.caption = element_text(size=caption.size),
+            legend.text = element_text(size=legend.size),
+           plot.title = element_text(size= text.size))
 }
