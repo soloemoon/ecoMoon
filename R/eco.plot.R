@@ -17,7 +17,7 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
   caption.size <-ifelse(missing(caption.size),13, caption.size)
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   axis.title.size <-ifelse(missing(axis.title.size),15, axis.title.size)
-
+if(sum(df[['recession']]) > 0 {
   recession <-df[['recession']]
   recession <-diff(recession)
   recession.start <-time(recession[recession == 1])
