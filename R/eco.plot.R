@@ -18,26 +18,12 @@ eco.plot <-function(df,x,y,subtitle,y.title,x.title,title,caption,date.break,col
   legend.size <-ifelse(missing(legend.size),15, legend.size)
   axis.title.size <-ifelse(missing(axis.title.size),15, axis.title.size)
 
-
-if(sum(df[['recession']]) !=0){
-
-    start <- if(head(df[['recession']],1)== 1){
-    df$date[head(df[['recession']],1)]
-
-}else{
-    df$date[which(diff(df[['recession']])==1)]
-}
-
-    end <-df$date[which(diff(df[['recession']])==-1)]
-
-if (length(end)>length(start)){
-      end <-end[-1]
-      recession.df <-data.frame(start = start, end = end)
-      recession.df <- subset(recession.df, start>=min(df[['recession']]))
-} else {
-      recession.df <-data.frame(start = start, end = end)
-      recession.df <- subset(recession.df, start>=min(df[['recession']]))
-}
+  recession <-df[['recession']]
+  recession <-diff(recession)
+  recession.start <-time(recession[recession == 1])
+  recession.end <- time(recession[recession == -1])
+  recession.df <- data.frame(recession.start, recession.end[2:length(recession.end)])
+  colnames(recession.df) <-c('start', 'end')
 
     ggplot()+
       geom_line(aes(x=df[[x]], y=df[[y]],color=color),size=line.size)+
